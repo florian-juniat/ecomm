@@ -18,6 +18,13 @@
   }
 }
 
+
+.imageTest {
+  height: 500px;
+  width: 250px;
+}
+
+
 .myP {
   color: white;
   padding-top: 50px;

@@ -2,12 +2,24 @@ import logo from './logo.svg';
 import './App.css';
 import { useState } from 'react';
 
+import logo2 from './bastien.jpg';
+
 import axios from 'axios';
 
 
 function App() {
+
+  const handleClickBastien = () => {
+    setTest(<img src={logo2} className="imageTest"/>)
+  }
   
   const [test, setTest] = useState("Nothing")
+
+  const [touche, setTouch] = useState(
+    <button className="ButtonTest" onClick={handleClickBastien}>
+            Ne touche pas
+        </button>
+  )
 
   const handleClick = () => {
 
@@ -18,6 +30,8 @@ function App() {
       })
   }
 
+  
+
   return (
     <div className="App">
       <header className="App-header">
@@ -27,9 +41,12 @@ function App() {
         <button className="ButtonTest" onClick={handleClick}>
             Verify
         </button>
+        
       </div>
       <p className="myP">{test}</p>
+      {touche}
     </div>
+    
   );
 }
 
