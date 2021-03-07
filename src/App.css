@@ -18,6 +18,11 @@
   }
 }
 
+.myP {
+  color: white;
+  padding-top: 50px;
+}
+
 .box {
   width: 600px;
 }
