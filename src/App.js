@@ -10,14 +10,14 @@ import axios from 'axios';
 function App() {
 
   const handleClickBastien = () => {
-    setTest(<p> Et non plus de bastien</p>)
+    setTest(<p> Nothing this button was just a test</p>)
   }
   
   const [test, setTest] = useState("Nothing")
 
   const [touche, setTouch] = useState(
     <button className="ButtonTest" onClick={handleClickBastien}>
-            Ne touche pas
+            Test button
         </button>
   )
 
