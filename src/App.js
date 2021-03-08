@@ -10,7 +10,7 @@ import axios from 'axios';
 function App() {
 
   const handleClickBastien = () => {
-    setTest(<img src={logo2} className="imageTest"/>)
+    setTest(<p> Et non plus de bastien</p>)
   }
   
   const [test, setTest] = useState("Nothing")
