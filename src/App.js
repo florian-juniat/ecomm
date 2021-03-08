@@ -1,28 +1,16 @@
 import logo from './logo.svg';
 import './App.css';
 import { useState } from 'react';
-
-import logo2 from './bastien.jpg';
-
 import axios from 'axios';
 
 
 function App() {
 
-  const handleClickBastien = () => {
-    setTest(<p> Nothing this button was just a test</p>)
-  }
   
   const [test, setTest] = useState("Nothing")
-
-  const [touche, setTouch] = useState(
-    <button className="ButtonTest" onClick={handleClickBastien}>
-            Test button
-        </button>
-  )
+  const [userName, setUserName] = useState("")
 
   const handleClick = () => {
-
     axios.get('https://back-ecommerce01.herokuapp.com/')
       .then(res => {
         console.log(res)
@@ -30,21 +18,34 @@ function App() {
       })
   }
 
+  const handleWriteUser = (event) => {
+    setUserName(event.target.value);
+  }
+
   
 
   return (
     <div className="App">
-      <header className="App-header">
-          <h1 className="title">E-commerce</h1>
-      </header>
-      <div className="mybody">
-        <button className="ButtonTest" onClick={handleClick}>
-            Verify
-        </button>
-        
+      <div className="mainBox">
+        <header className="App-header">
+            <h1 className="title">E-commerce</h1>
+        </header>
+        <div className="mybody">
+          <div className="containerInput">
+            <h2 className="titleInput">Username</h2>
+            <input className="myInput" type="text" value={userName} onChange={handleWriteUser} />
+          </div>
+          <div className="containerInput">
+            <h2 className="titleInput">Password</h2>
+            <input className="myInput" type="text" value={userName} onChange={handleWriteUser} />
+          </div>
+          <button className="ButtonTest" onClick={handleClick}>
+              Connect
+          </button>
+          
+        </div>
+        <p className="myP">{test}</p>
       </div>
-      <p className="myP">{test}</p>
-      {touche}
     </div>
     
   );
