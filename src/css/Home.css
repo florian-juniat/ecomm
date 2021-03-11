@@ -1,0 +1,87 @@
+
+.Home
+{
+    text-align: center;
+    justify-items: center;
+    align-items: center;
+    width: 100%;
+}
+
+
+
+.ButtonTest {
+    border: 2px solid #282c34;
+    background-color: white;
+    color: #282c34;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.ButtonTest:hover {
+    background-color: #282c34;
+    color: white;
+}
+
+.ButtonHeader
+{
+    padding-right: 80px;
+    padding-left: 80px;
+    font-size: 20px;
+    border-right: 3px solid #282c34  ;
+    color: #282c34;
+}
+
+.ButtonHeader2
+{
+    padding-right: 80px;
+    padding-left: 80px;
+    font-size: 20px;
+    margin-right: 50px;
+    color: #282c34;
+}
+
+.header {
+    padding-top: 20px;
+    display: flex;
+    flex-direction: row-reverse;
+    width: 100%;
+}
+
+.headerElement {
+    margin-right: 20px;
+}
+
+.title {
+    margin-top: 100px;
+    font-size: 50px;
+    color: #282c34;
+}
+
+.text {
+    margin-left: 30%;
+    margin-right: 30%;
+    font-size: 20px;
+    color: #282c34;
+}
+
+
+.ButtonLevel {
+    border: 2px solid #282c34;
+    background-color: white;
+    color: #282c34;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-inline: 20px;
+    padding: 20px;
+}
+
+.ButtonLevel:hover {
+    background-color: #282c34;
+    color: white;
+}
+
+.containerButtonLevel {
+    margin-top: 100px;
+}
