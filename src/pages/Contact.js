@@ -4,6 +4,9 @@ import '../css/Contact.css';
 import { useState } from 'react';
 import axios from 'axios';
 
+import HeaderStart from '../utility/HeaderStart'
+
+
 /*
 
 <input className="inputGetInTouch" type="text" value={getTouch} onChange={(event) => {
@@ -23,20 +26,7 @@ function Contact(props) {
 
     return (
         <div className="Home">
-            <div className="header">
-                <a className="ButtonHeader2" onClick={() => {props.setPage("contact")}}>
-                    Contact
-                </a>
-                <a className="ButtonHeader" onClick={handleClick}>
-                    Sign in
-                </a>
-                <a className="ButtonHeader" onClick={handleClick}>
-                    Sign up
-                </a>
-                <a className="ButtonHeader" onClick={handleClick}>
-                    About
-                </a>
-            </div>
+            <HeaderStart setPage={props.setPage}/>
             <p className="title">e-Teaching</p>
             <p className="textContact"> 
                 Get in touch

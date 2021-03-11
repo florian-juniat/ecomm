@@ -5,6 +5,8 @@ import '../css/Home.css';
 import { useState } from 'react';
 import axios from 'axios';
 
+import HeaderStart from '../utility/HeaderStart'
+
 
 function Home(props) {
 
@@ -14,20 +16,7 @@ function Home(props) {
 
     return (
         <div className="Home">
-            <div className="header">
-                <a className="ButtonHeader2" onClick={() => {props.setPage("contact")}}>
-                    Contact
-                </a>
-                <a className="ButtonHeader" onClick={handleClick}>
-                    Sign in
-                </a>
-                <a className="ButtonHeader" onClick={handleClick}>
-                    Sign up
-                </a>
-                <a className="ButtonHeader" onClick={handleClick}>
-                    About
-                </a>
-            </div>
+            <HeaderStart setPage={props.setPage}/>
             <p className="title">e-Teaching</p>
             <p className="text"> 
                 At e-teaching we believe everyone should have access to online courses within the field of software development. As the world is becoming increasingly digital, the need for workforce with software development skills is ever increasing....  
