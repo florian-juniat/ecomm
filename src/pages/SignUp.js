@@ -15,6 +15,7 @@ function SignUp(props) {
     const handleSignUp = () => {
         if (email == "" || password == "") {
             setErrorMessage("Please enter details")
+            return
         }
         axios.post('https://back-ecommerce01.herokuapp.com/auth/register', {
             name: email,
