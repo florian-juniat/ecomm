@@ -11,9 +11,12 @@ import Contact from './pages/Contact'
 import SignUp from './pages/SignUp'
 import HeaderStart from './utility/HeaderStart'
 
+import HomePage from './pages/HomePage'
+
 function App() {
 
   const [page, setPage] = useState("home")
+  const [token, setToken] = useState("")
 
   var display = <Home setPage={setPage}/>
 
@@ -21,14 +24,18 @@ function App() {
     display = <Home setPage={setPage}/>
   }
   if (page == "signin") {
-    display = <Login setPage={setPage}/>
+    display = <Login setPage={setPage} setToken={setToken}/>
   }
   if (page == "contact") {
     display = <Contact setPage={setPage}/>
   }
 
   if (page == "signup") {
-    display = <SignUp setPage={setPage}/>
+    display = <SignUp setPage={setPage} setToken={setToken}/>
+  }
+
+  if (page == "HomePage" && token != "") {
+    display = <HomePage setPage={setPage} setToken={setToken} token={token}/>
   }
 
 
