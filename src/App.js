@@ -13,6 +13,8 @@ import HeaderStart from './utility/HeaderStart'
 
 import HomePage from './pages/HomePage'
 
+import Paiement from './pages/Paiement'
+
 function App() {
 
   const [page, setPage] = useState("home")
@@ -34,9 +36,14 @@ function App() {
     display = <SignUp setPage={setPage} setToken={setToken}/>
   }
 
+  if (page == "testpaiement") {
+    display = <Paiement setPage={setPage} setToken={setToken}/>
+  }
+
   if (page == "HomePage" && token != "") {
     display = <HomePage setPage={setPage} setToken={setToken} token={token}/>
   }
+  
 
 
 

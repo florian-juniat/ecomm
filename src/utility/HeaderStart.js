@@ -13,7 +13,10 @@ function HeaderStart(props) {
 
     return (
         <div className="header">
-                <a className="ButtonHeader2" onClick={() => {props.setPage("contact")}}>
+                <a className="ButtonHeader2" onClick={() => {props.setPage("testpaiement")}}>
+                    TestPaiement
+                </a>
+                <a className="ButtonHeader" onClick={() => {props.setPage("contact")}}>
                     Contact
                 </a>
                 <a className="ButtonHeader" onClick={() => {props.setPage("signin")}}>
