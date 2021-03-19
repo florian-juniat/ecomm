@@ -105,10 +105,10 @@ const App = () => {
         <Switch>
 
           <Route exact path="/signup">
-            <SignUp />
+            <SignUp setToken={setToken}/>
           </Route>
           <Route exact path="/signin">
-            <SignIn />
+            <SignIn setToken={setToken}/>
           </Route>
           
           <Route token={token} exact path="/ecomm">

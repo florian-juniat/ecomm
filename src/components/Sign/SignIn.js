@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -13,6 +13,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { useHistory } from 'react-router-dom';
 import { Link, useLocation } from 'react-router-dom';
+import axios from 'axios';
+
 
 
 
@@ -47,17 +49,35 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
+  error: {
+    color: "red"
+  }
 }));
 
-export default function SignIn() {
+export default function SignIn(props) {
   const classes = useStyles();
 
   const history = useHistory();
 
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [errorMessage, setErrorMessage] = useState("")
 
   const handleClick = () => {
-    history.push('/ecomm')
-  }
+    if (email == "" || password == "") {
+        setErrorMessage("Please enter details")
+    }
+    axios.post('https://back-ecommerce01.herokuapp.com/auth/login', {
+        name: email,
+        password: password
+    }).then(res => {
+        props.setToken(res.data)
+        history.push('/ecomm')
+    }).catch(function (error) {
+        setErrorMessage("Connection refused")
+    });
+}
+
 
   return (
     <Container component="main" maxWidth="xs">
@@ -79,9 +99,11 @@ export default function SignIn() {
             label="Email Address"
             name="email"
             autoComplete="email"
+            value={email} onChange={(event) => setEmail(event.target.value)}
             autoFocus
           />
           <TextField
+            value={password} onChange={(event) => setPassword(event.target.value)}
             variant="outlined"
             margin="normal"
             required
@@ -118,6 +140,7 @@ export default function SignIn() {
             </Grid>
           </Grid>
         </form>
+        <p className={classes.error}>{errorMessage}</p> 
       </div>
     </Container>
   );
