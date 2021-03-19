@@ -9,6 +9,11 @@ const Products = ({ products, onAddToCart }) => {
 
   if (!products.length) return <p>Loading...</p>;
 
+
+  console.log("====TEST Products=====")
+  console.log(products)
+  
+
   return (
     <main className={classes.content}>
       <div className={classes.toolbar} />

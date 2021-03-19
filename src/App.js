@@ -14,7 +14,6 @@ const App = () => {
 
   const fetchProducts = async () => {
     const { data } = await commerce.products.list();
-
     setProducts(data);
   };
 
@@ -77,13 +76,13 @@ const App = () => {
         <CssBaseline />
         <Navbar totalItems={cart.total_items} handleDrawerToggle={handleDrawerToggle} />
         <Switch>
-          <Route exact path="/">
+          <Route exact path="/ecomm">
             <Products products={products} onAddToCart={handleAddToCart} handleUpdateCartQty />
           </Route>
-          <Route exact path="/cart">
+          <Route exact path="/ecomm/cart">
             <Cart cart={cart} onUpdateCartQty={handleUpdateCartQty} onRemoveFromCart={handleRemoveFromCart} onEmptyCart={handleEmptyCart} />
           </Route>
-          <Route path="/checkout" exact>
+          <Route path="/ecomm/checkout" exact>
             <Checkout cart={cart} order={order} onCaptureCheckout={handleCaptureCheckout} error={errorMessage} />
           </Route>
         </Switch>
