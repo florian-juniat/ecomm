@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.js": "/ecomm/static/js/main.31cbcb25.chunk.js",
-    "main.js.map": "/ecomm/static/js/main.31cbcb25.chunk.js.map",
+    "main.js": "/ecomm/static/js/main.571e4644.chunk.js",
+    "main.js.map": "/ecomm/static/js/main.571e4644.chunk.js.map",
     "runtime-main.js": "/ecomm/static/js/runtime-main.a361016d.js",
     "runtime-main.js.map": "/ecomm/static/js/runtime-main.a361016d.js.map",
-    "static/js/2.62c8c582.chunk.js": "/ecomm/static/js/2.62c8c582.chunk.js",
-    "static/js/2.62c8c582.chunk.js.map": "/ecomm/static/js/2.62c8c582.chunk.js.map",
+    "static/js/2.e9a44069.chunk.js": "/ecomm/static/js/2.e9a44069.chunk.js",
+    "static/js/2.e9a44069.chunk.js.map": "/ecomm/static/js/2.e9a44069.chunk.js.map",
     "index.html": "/ecomm/index.html",
-    "precache-manifest.183b9a5b5098ac83281da4699cd9da7c.js": "/ecomm/precache-manifest.183b9a5b5098ac83281da4699cd9da7c.js",
+    "precache-manifest.36ee898e48c3ccaaa0b0a8bb337e4c8d.js": "/ecomm/precache-manifest.36ee898e48c3ccaaa0b0a8bb337e4c8d.js",
     "service-worker.js": "/ecomm/service-worker.js",
-    "static/js/2.62c8c582.chunk.js.LICENSE.txt": "/ecomm/static/js/2.62c8c582.chunk.js.LICENSE.txt",
+    "static/js/2.e9a44069.chunk.js.LICENSE.txt": "/ecomm/static/js/2.e9a44069.chunk.js.LICENSE.txt",
     "static/media/commerce.png": "/ecomm/static/media/commerce.422fec10.png"
   },
   "entrypoints": [
     "static/js/runtime-main.a361016d.js",
-    "static/js/2.62c8c582.chunk.js",
-    "static/js/main.31cbcb25.chunk.js"
+    "static/js/2.e9a44069.chunk.js",
+    "static/js/main.571e4644.chunk.js"
   ]
 }
