@@ -40,7 +40,7 @@ const PrimarySearchAppBar = ({ totalItems }) => {
           <div className={classes.grow} />
           {location.pathname === '/ecomm' && (
           <div className={classes.button}>
-            <IconButton component={Link} to="ecomm//cart" aria-label="Show cart items" color="inherit">
+            <IconButton component={Link} to="ecomm/cart" aria-label="Show cart items" color="inherit">
               <Badge badgeContent={totalItems} color="secondary">
                 <ShoppingCart />
               </Badge>
