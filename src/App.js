@@ -79,10 +79,10 @@ const App = () => {
           <Route exact path="/ecomm">
             <Products products={products} onAddToCart={handleAddToCart} handleUpdateCartQty />
           </Route>
-          <Route exact path="/ecomm/cart">
+          <Route exact path="/cart">
             <Cart cart={cart} onUpdateCartQty={handleUpdateCartQty} onRemoveFromCart={handleRemoveFromCart} onEmptyCart={handleEmptyCart} />
           </Route>
-          <Route path="/ecomm/checkout" exact>
+          <Route path="/checkout" exact>
             <Checkout cart={cart} order={order} onCaptureCheckout={handleCaptureCheckout} error={errorMessage} />
           </Route>
         </Switch>
