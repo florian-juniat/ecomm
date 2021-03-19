@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -13,6 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { useHistory } from 'react-router-dom';
+import axios from 'axios';
 
 
 function Copyright() {
@@ -48,14 +49,39 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignUp() {
+export default function SignUp(props) {
   const classes = useStyles();
   const history = useHistory();
 
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [errorMessage, setErrorMessage] = useState("")
+
 
   const handleClick = () => {
-    history.push('/ecomm')
-  }
+    if (email == "" || password == "") {
+        setErrorMessage("Please enter details")
+        return
+    }
+    axios.post('https://back-ecommerce01.herokuapp.com/auth/register', {
+        name: email,
+        password: password
+    }).then(res => {
+
+        axios.post('https://back-ecommerce01.herokuapp.com/auth/login', {
+            name: email,
+            password: password
+        }).then(res => {
+            props.setToken(res.data)
+            history.push('/ecomm')
+        }).catch(function (error) {
+            setErrorMessage("Problem during connexion")
+        });
+    }).catch(function (error) {
+        setErrorMessage("Sign Up refused: use another name")
+    });
+}
+
 
   return (
     <Container component="main" maxWidth="xs">
@@ -101,10 +127,12 @@ export default function SignUp() {
                 label="Email Address"
                 name="email"
                 autoComplete="email"
+                value={email} onChange={(event) => setEmail(event.target.value)}
               />
             </Grid>
             <Grid item xs={12}>
               <TextField
+              value={password} onChange={(event) => setPassword(event.target.value)}
                 variant="outlined"
                 required
                 fullWidth
@@ -140,6 +168,7 @@ export default function SignUp() {
             </Grid>
           </Grid>
         </form>
+        <p className={classes.error}>{errorMessage}</p>
       </div>
     </Container>
   );
