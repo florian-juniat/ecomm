@@ -5,12 +5,17 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Navbar, Products, Cart, Checkout } from './components';
 import { commerce } from './lib/commerce';
 
+import SignUp from './components/Sign/SignUp'
+import SignIn from './components/Sign/SignIn'
+import PrivateRoute from './components/Private/Privateroute'
+
 const App = () => {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState({});
   const [order, setOrder] = useState({});
   const [errorMessage, setErrorMessage] = useState('');
+  const [token, setToken] = useState("")
 
   const fetchProducts = async () => {
     const { data } = await commerce.products.list();
@@ -70,14 +75,18 @@ const App = () => {
 
   const handleDrawerToggle = () => setMobileOpen(!mobileOpen);
 
-  return (
-    <Router>
-      <div style={{ display: 'flex' }}>
-        <CssBaseline />
-        <Navbar totalItems={cart.total_items} handleDrawerToggle={handleDrawerToggle} />
-        <Switch>
+  /*
+
+  <Switch>
+          
           <Route exact path="/ecomm">
             <Products products={products} onAddToCart={handleAddToCart} handleUpdateCartQty />
+          </Route>
+          <Route exact path="/signup">
+            <SignUp />
+          </Route>
+          <Route exact path="/signin">
+            <SignIn />
           </Route>
           <Route exact path="/cart">
             <Cart cart={cart} onUpdateCartQty={handleUpdateCartQty} onRemoveFromCart={handleRemoveFromCart} onEmptyCart={handleEmptyCart} />
@@ -86,6 +95,34 @@ const App = () => {
             <Checkout cart={cart} order={order} onCaptureCheckout={handleCaptureCheckout} error={errorMessage} />
           </Route>
         </Switch>
+        */
+
+  return (
+    <Router>
+      <div style={{ display: 'flex' }}>
+        <CssBaseline />
+        <Navbar totalItems={cart.total_items} handleDrawerToggle={handleDrawerToggle} />
+        <Switch>
+
+          <Route exact path="/signup">
+            <SignUp />
+          </Route>
+          <Route exact path="/signin">
+            <SignIn />
+          </Route>
+          
+          <PrivateRoute token={token} exact path="/ecomm">
+            <Products products={products} onAddToCart={handleAddToCart} handleUpdateCartQty />
+          </PrivateRoute>
+          
+          <PrivateRoute token={token} exact path="/cart">
+            <Cart cart={cart} onUpdateCartQty={handleUpdateCartQty} onRemoveFromCart={handleRemoveFromCart} onEmptyCart={handleEmptyCart} />
+          </PrivateRoute>
+          <PrivateRoute token={token} path="/checkout" exact>
+            <Checkout cart={cart} order={order} onCaptureCheckout={handleCaptureCheckout} error={errorMessage} />
+          </PrivateRoute>
+        </Switch>
+        
       </div>
     </Router>
   );
