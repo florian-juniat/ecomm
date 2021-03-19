@@ -51,6 +51,13 @@ const useStyles = makeStyles((theme) => ({
   },
   error: {
     color: "red"
+  },
+  astext: {
+    background: "none",
+    border:"none",
+    margin:0,
+    padding:0,
+    cursor: "pointer"
   }
 }));
 
@@ -138,9 +145,9 @@ const handleGoSignUp = () => {
               </Link>
             </Grid>
             <Grid item>
-              <Button onClick={handleGoSignUp} variant="body2">
+              <a className={classes.astext} onClick={handleGoSignUp} variant="body2">
                 {"Don't have an account? Sign Up"}
-              </Button>
+              </a>
             </Grid>
           </Grid>
         </form>

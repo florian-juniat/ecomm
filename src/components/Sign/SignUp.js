@@ -39,6 +39,13 @@ const useStyles = makeStyles((theme) => ({
   },
   error: {
     color: "red"
+  },
+  astext: {
+    background: "none",
+    border:"none",
+    margin:0,
+    padding:0,
+    cursor: "pointer"
   }
 }));
 
@@ -54,17 +61,26 @@ export default function SignUp(props) {
   const handleClick = () => {
     if (email == "" || password == "") {
         setErrorMessage("Please enter details")
+        return
     }
-    axios.post('https://back-ecommerce01.herokuapp.com/auth/login', {
+    axios.post('https://back-ecommerce01.herokuapp.com/auth/register', {
         name: email,
         password: password
     }).then(res => {
-        props.setToken(res.data)
-        history.push('/ecomm')
+
+        axios.post('https://back-ecommerce01.herokuapp.com/auth/login', {
+            name: email,
+            password: password
+        }).then(res => {
+            props.setToken(res.data)
+            history.push('/ecomm')
+        }).catch(function (error) {
+            setErrorMessage("Problem during connexion")
+        });
     }).catch(function (error) {
-        setErrorMessage("Connection refused")
+        setErrorMessage("Sign Up refused: use another name")
     });
-}
+  }
 
   const handleGoSignIn = () => {
     history.push('/ecomm/signin')
@@ -79,7 +95,7 @@ export default function SignUp(props) {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Boubou
+          Sign Up
         </Typography>
         <form className={classes.form} noValidate>
           <TextField
@@ -117,7 +133,7 @@ export default function SignUp(props) {
             className={classes.submit}
             onClick={handleClick}
           >
-            Sign In
+            Sign Up
           </Button>
           <Grid container>
             <Grid item xs>
@@ -126,9 +142,9 @@ export default function SignUp(props) {
               </Link>
             </Grid>
             <Grid item>
-              <Button onClick={handleGoSignIn} variant="body2">
+              <a className={classes.astext} onClick={handleGoSignIn} variant="body2">
                 {"Don't have an account? Sign Up"}
-              </Button>
+              </a>
             </Grid>
           </Grid>
         </form>
