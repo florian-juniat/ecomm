@@ -1,18 +1,19 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
+import { useHistory } from 'react-router-dom';
 
 import Product from './Product/Product';
 import useStyles from './styles';
 
-const Products = ({ products, onAddToCart }) => {
+const Products = ({ products, onAddToCart, token }) => {
   const classes = useStyles();
+  const history = useHistory();
 
   if (!products.length) return <p>Loading...</p>;
 
-
-  console.log("====TEST Products=====")
-  console.log(products)
-  
+  if (token == "") {
+    history.push('/signin')
+  }
 
   return (
     <main className={classes.content}>

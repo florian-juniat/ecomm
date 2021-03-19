@@ -111,16 +111,13 @@ const App = () => {
             <SignIn />
           </Route>
           
-          <PrivateRoute token={token} exact path="/ecomm">
-            <Products products={products} onAddToCart={handleAddToCart} handleUpdateCartQty />
-          </PrivateRoute>
+          <Route token={token} exact path="/ecomm">
+            <Products token={token} products={products} onAddToCart={handleAddToCart} handleUpdateCartQty />
+          </Route>
           
-          <PrivateRoute token={token} exact path="/cart">
-            <Cart cart={cart} onUpdateCartQty={handleUpdateCartQty} onRemoveFromCart={handleRemoveFromCart} onEmptyCart={handleEmptyCart} />
-          </PrivateRoute>
-          <PrivateRoute token={token} path="/checkout" exact>
-            <Checkout cart={cart} order={order} onCaptureCheckout={handleCaptureCheckout} error={errorMessage} />
-          </PrivateRoute>
+          <Route token={token} exact path="/cart">
+            <Cart token={token} cart={cart} onUpdateCartQty={handleUpdateCartQty} onRemoveFromCart={handleRemoveFromCart} onEmptyCart={handleEmptyCart} />
+          </Route>
         </Switch>
         
       </div>
