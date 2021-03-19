@@ -66,6 +66,10 @@ export default function SignUp(props) {
     });
 }
 
+  const handleGoSignIn = () => {
+    history.push('/ecomm/signin')
+  }
+
 
   return (
     <Container component="main" maxWidth="xs">
@@ -122,9 +126,9 @@ export default function SignUp(props) {
               </Link>
             </Grid>
             <Grid item>
-              <a href="/ecomm/boubou" variant="body2">
+              <Button onClick={handleGoSignIn} variant="body2">
                 {"Don't have an account? Sign Up"}
-              </a>
+              </Button>
             </Grid>
           </Grid>
         </form>
