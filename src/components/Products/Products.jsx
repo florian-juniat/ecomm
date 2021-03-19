@@ -12,7 +12,7 @@ const Products = ({ products, onAddToCart, token }) => {
   if (!products.length) return <p>Loading...</p>;
 
   if (token == "") {
-    history.push('/signin')
+    history.push('/ecomm/signin')
   }
 
   return (

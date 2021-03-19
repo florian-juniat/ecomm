@@ -162,7 +162,7 @@ export default function SignUp(props) {
           </Button>
           <Grid container justify="flex-end">
             <Grid item>
-              <a href="/signin" variant="body2">
+              <a href="/ecomm/signin" variant="body2">
                 Already have an account? Sign in
               </a>
             </Grid>

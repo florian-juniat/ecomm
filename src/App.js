@@ -104,10 +104,10 @@ const App = () => {
         <Navbar totalItems={cart.total_items} handleDrawerToggle={handleDrawerToggle} />
         <Switch>
 
-          <Route exact path="/signup">
+          <Route exact path="/ecomm/signup">
             <SignUp setToken={setToken}/>
           </Route>
-          <Route exact path="/signin">
+          <Route exact path="/ecomm/signin">
             <SignIn setToken={setToken}/>
           </Route>
           
@@ -115,7 +115,7 @@ const App = () => {
             <Products token={token} products={products} onAddToCart={handleAddToCart} handleUpdateCartQty />
           </Route>
           
-          <Route token={token} exact path="/cart">
+          <Route token={token} exact path="/ecomm/cart">
             <Cart token={token} cart={cart} onUpdateCartQty={handleUpdateCartQty} onRemoveFromCart={handleRemoveFromCart} onEmptyCart={handleEmptyCart} />
           </Route>
         </Switch>

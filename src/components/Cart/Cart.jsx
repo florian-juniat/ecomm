@@ -12,7 +12,7 @@ const Cart = ({ cart, onUpdateCartQty, onRemoveFromCart, onEmptyCart , token}) =
 
 
   if (token == "") {
-    history.push('/signin')
+    history.push('/ecomm/signin')
   }
 
   const handleEmptyCart = () => onEmptyCart();
