@@ -17,6 +17,7 @@ import { Link, useLocation } from 'react-router-dom';
 import axios from 'axios';
 
 
+import { FormControl, FormLabel, RadioGroup, Radio } from '@material-ui/core';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -46,6 +47,9 @@ const useStyles = makeStyles((theme) => ({
     margin:0,
     padding:0,
     cursor: "pointer"
+  },
+  radioContainer: {
+    marginTop: "30px"
   }
 }));
 
@@ -56,16 +60,23 @@ export default function SignUp(props) {
 
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [repeatedPassword, setRepeatedPassword] = useState("")
   const [errorMessage, setErrorMessage] = useState("")
+  const [valueInterest, setValueInterest] = useState("")
+  const [valueEducation, setValueEducation] = useState("")
+  const [valueResaon, setValueReason] = useState("")
 
   const handleClick = () => {
-    if (email == "" || password == "") {
+    if (email == "" || password == "" || repeatedPassword == "" || valueResaon == "" || valueEducation == "" || valueInterest == "") {
         setErrorMessage("Please enter details")
         return
     }
     axios.post('https://back-ecommerce01.herokuapp.com/auth/register', {
         name: email,
-        password: password
+        password: password,
+        education: valueEducation,
+        reason: valueResaon,
+        interest: valueInterest
     }).then(res => {
 
         axios.post('https://back-ecommerce01.herokuapp.com/auth/login', {
@@ -85,6 +96,19 @@ export default function SignUp(props) {
   const handleGoSignIn = () => {
     history.push('/ecomm/signin')
   }
+
+  const handleChangeInterest = (event) => {
+    setValueInterest(event.target.value)
+  }
+
+  const handleChangeEducation = (event) => {
+    setValueEducation(event.target.value)
+  }
+
+  const handleChangeReason = (event) => {
+    setValueReason(event.target.value)
+  }
+
 
 
   return (
@@ -122,10 +146,52 @@ export default function SignUp(props) {
             id="password"
             autoComplete="current-password"
           />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
+
+          <TextField
+            value={repeatedPassword} onChange={(event) => setRepeatedPassword(event.target.value)}
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            name="Repeat Password"
+            label="Repeat Password"
+            type="password"
+            autoComplete="current-password"
           />
+
+        <FormControl className={classes.radioContainer} component="fieldset">
+          <FormLabel component="legend">Interest *</FormLabel>
+          <RadioGroup aria-label="gender" name="gender1" value={valueInterest} onChange={handleChangeInterest}>
+            <FormControlLabel value="Informational Technology" control={<Radio />} label="Informational Technology" />
+            <FormControlLabel value="Business Intelligence" control={<Radio />} label="Business Intelligence" />
+            <FormControlLabel value="Data Science"  control={<Radio />} label="Data Science" />
+            <FormControlLabel value="Digital Economics" control={<Radio />} label="Digital Economics" />
+            <FormControlLabel value="biological Computing" control={<Radio />} label="biological Computing" />
+            <FormControlLabel value="E-commerce"  control={<Radio />} label="E-commerce" />
+          </RadioGroup>
+        </FormControl>
+
+
+        <FormControl className={classes.radioContainer} component="fieldset">
+          <FormLabel component="legend">Education *</FormLabel>
+          <RadioGroup aria-label="gender" name="gender1" value={valueEducation} onChange={handleChangeEducation}>
+            <FormControlLabel value="Higher Education" control={<Radio />} label="Informational Technology" />
+            <FormControlLabel value="Bachelors" control={<Radio />} label="Business Intelligence" />
+            <FormControlLabel value="Masters"  control={<Radio />} label="Data Science" />
+            <FormControlLabel value="PhD" control={<Radio />} label="Digital Economics" />
+            <FormControlLabel value="Postdoctorate" control={<Radio />} label="biological Computing" />
+          </RadioGroup>
+        </FormControl>
+
+        <FormControl className={classes.radioContainer} component="fieldset">
+          <FormLabel component="legend">Reasons for taking new courses *</FormLabel>
+          <RadioGroup aria-label="gender" name="gender1" value={valueResaon} onChange={handleChangeReason}>
+            <FormControlLabel value="Person Interest" control={<Radio />} label="Informational Technology" />
+            <FormControlLabel value="Educational" control={<Radio />} label="Business Intelligence" />
+            <FormControlLabel value="Career Development"  control={<Radio />} label="Data Science" />
+          </RadioGroup>
+        </FormControl>
+
           <Button
             fullWidth
             variant="contained"
@@ -137,14 +203,13 @@ export default function SignUp(props) {
           </Button>
           <Grid container>
             <Grid item xs>
-              <Link href="#" variant="body2">
-                Forgot password?
-              </Link>
             </Grid>
             <Grid item>
+              <Link>
               <a className={classes.astext} onClick={handleGoSignIn} variant="body2">
                 {"Don't have an account? Sign Up"}
               </a>
+              </Link>
             </Grid>
           </Grid>
         </form>
