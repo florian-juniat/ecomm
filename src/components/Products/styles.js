@@ -10,4 +10,16 @@ export default makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
+  containerButton: {
+    margin: 10
+  },
+  submit: {
+    margin: theme.spacing(3, 2, 2),
+
+    width: "10%",
+    height: "50px"
+  },
+  buttonContainer: {
+    flexDirection: "row"
+  }
 }));

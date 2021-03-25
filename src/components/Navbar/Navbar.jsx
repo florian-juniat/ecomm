@@ -34,19 +34,26 @@ const PrimarySearchAppBar = ({ totalItems }) => {
     <>
       <AppBar position="fixed" className={classes.appBar} color="inherit">
         <Toolbar>
-          <Typography component={Link} to="/ecomm/signin" variant="h6" className={classes.title} color="inherit">
+          <Typography component={Link} to="/ecomm/" variant="h6" className={classes.title} color="inherit">
             <img src={logo} alt="commerce.js" height="25px" className={classes.image} /> e-Teaching
           </Typography>
+          
+          <div>
+              
+              </div>
           <div className={classes.grow} />
           {location.pathname === '/ecomm' && (
           <div className={classes.button}>
+            
             <IconButton component={Link} to="ecomm/cart" aria-label="Show cart items" color="inherit">
               <Badge badgeContent={totalItems} color="secondary">
                 <ShoppingCart />
               </Badge>
             </IconButton>
+            
           </div>
           )}
+          
         </Toolbar>
       </AppBar>
       {renderMobileMenu}
