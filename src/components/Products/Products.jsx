@@ -7,6 +7,8 @@ import useStyles from './styles';
 import axios from 'axios';
 import Button from '@material-ui/core/Button';
 import { Link, useLocation } from 'react-router-dom';
+import TextField from '@material-ui/core/TextField';
+
 
 
 
@@ -19,6 +21,7 @@ const Products = ({ products, onAddToCart, token, setTotalItem }) => {
   const [loadProduct, setLoadProduct] = useState(false)
 
   const [reco, setReco] = useState(true)
+  const [search, setSearch] = useState("")
 
   if (!products.length) return <p>Loading...</p>;
 
@@ -82,8 +85,8 @@ const Products = ({ products, onAddToCart, token, setTotalItem }) => {
   
 
   return (
-    <main className={classes.content}>
-      <div className={classes.toolbar} />
+    <main className={classes.content} justify="center">
+      <div className={classes.toolbar} justify="center" />
           <div className={classes.buttonContainer}>
             <Button
               disabled={reco}
@@ -107,14 +110,27 @@ const Products = ({ products, onAddToCart, token, setTotalItem }) => {
             </Button>
             
           </div>
-            
+          <div className={classes.textContainer}>
+            <TextField justify="center"
+              value={search} onChange={(event) => setSearch(event.target.value)}
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="Search"
+              label="Search"
+              className={classes.search}
+              autoComplete="current-password"
+            />
+          </div>
+          
       <Grid container justify="center" spacing={4}>
 
-        {productt.map((product) => (
+        {productt.map((product) =>  (product.name.toLowerCase()).includes(search) ? (
           <Grid key={product._id} item xs={12} sm={6} md={4} lg={3}>
             <Product setTotalItem={setTotalItem} token={token} product={product} onAddToCart={onAddToCart} />
-          </Grid>
-        ))}
+          </Grid>) : <div></div>
+        )}
       </Grid>
     </main>
   );

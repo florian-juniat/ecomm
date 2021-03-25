@@ -6,6 +6,8 @@ export default makeStyles((theme) => ({
     flexGrow: 1,
     backgroundColor: theme.palette.background.default,
     padding: theme.spacing(3),
+    justifyContent:"center",
+    alignItems:"center"
   },
   root: {
     flexGrow: 1,
@@ -20,5 +22,16 @@ export default makeStyles((theme) => ({
   },
   buttonContainer: {
     flexDirection: "row"
+  },
+  search:
+  {
+    alignItems: "center",
+    marginBottom: "100px"
+  },
+  textContainer: {
+    alignItems: "center",
+    justifyContent:"center",
+    marginLeft: "15%",
+    marginRight: "15%"
   }
 }));
