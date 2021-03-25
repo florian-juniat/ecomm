@@ -10,7 +10,7 @@ import { Link, useLocation } from 'react-router-dom';
 
 
 
-const Products = ({ products, onAddToCart, token }) => {
+const Products = ({ products, onAddToCart, token, setTotalItem }) => {
   const classes = useStyles();
   const history = useHistory();
 
@@ -33,7 +33,8 @@ const Products = ({ products, onAddToCart, token }) => {
       headers: {
         'Authorization': token
       }}).then(res => {
-          setProduct(res.data)
+          setProduct(res.data.product)
+          setTotalItem(res.data.basket)
       }).catch(function (error) {
         console.log("=======> problem get products")
       });
@@ -44,32 +45,22 @@ const Products = ({ products, onAddToCart, token }) => {
       headers: {
         'Authorization': token
       }}).then(res => {
-          setProduct(res.data)
+          setProduct(res.data.product)
+          setTotalItem(res.data.basket)
       }).catch(function (error) {
         console.log("=======> problem get products")
       });
     }
   }
 
-  /*
-axios.get('https://back-ecommerce01.herokuapp.com/home/courses', {
-      headers: {
-        'Authorization': token
-      }}).then(res => {
-          setProducts(res)
-          console.log("=========== Products ===========")
-          console.log(products)
-    }).catch(function (error) {
-      console.log("=======> problem get products")
-    });
-  */
 
     if (loadProduct == false && reco == true) {
       axios.get('https://back-ecommerce01.herokuapp.com/home/recommended', {
       headers: {
         'Authorization': token
       }}).then(res => {
-          setProduct(res.data)
+          setProduct(res.data.product)
+          setTotalItem(res.data.basket)
       }).catch(function (error) {
         console.log("=======> problem get products")
       });
@@ -81,7 +72,8 @@ axios.get('https://back-ecommerce01.herokuapp.com/home/courses', {
       headers: {
         'Authorization': token
       }}).then(res => {
-          setProduct(res.data)
+          setProduct(res.data.product)
+          setTotalItem(res.data.basket)
       }).catch(function (error) {
         console.log("=======> problem get products")
       });
@@ -120,7 +112,7 @@ axios.get('https://back-ecommerce01.herokuapp.com/home/courses', {
 
         {productt.map((product) => (
           <Grid key={product._id} item xs={12} sm={6} md={4} lg={3}>
-            <Product product={product} onAddToCart={onAddToCart} />
+            <Product setTotalItem={setTotalItem} token={token} product={product} onAddToCart={onAddToCart} />
           </Grid>
         ))}
       </Grid>

@@ -16,6 +16,7 @@ const App = () => {
   const [order, setOrder] = useState({});
   const [errorMessage, setErrorMessage] = useState('');
   const [token, setToken] = useState("")
+  const [totalItem, setTotalItem] = useState(0)
 
   const fetchProducts = async () => {
     const { data } = await commerce.products.list();
@@ -101,7 +102,7 @@ const App = () => {
     <Router>
       <div style={{ display: 'flex' }}>
         <CssBaseline />
-        <Navbar totalItems={cart.total_items} handleDrawerToggle={handleDrawerToggle} />
+        <Navbar totalItems={totalItem} handleDrawerToggle={handleDrawerToggle} token={token} />
         <Switch>
 
           <Route exact path="/ecomm/signup">
@@ -112,11 +113,11 @@ const App = () => {
           </Route>
           
           <Route token={token} exact path="/ecomm">
-            <Products token={token} products={products} onAddToCart={handleAddToCart} handleUpdateCartQty />
+            <Products setTotalItem={setTotalItem} token={token} products={products} onAddToCart={handleAddToCart} handleUpdateCartQty />
           </Route>
           
           <Route token={token} exact path="/ecomm/cart">
-            <Cart token={token} cart={cart} onUpdateCartQty={handleUpdateCartQty} onRemoveFromCart={handleRemoveFromCart} onEmptyCart={handleEmptyCart} />
+            <Cart totalItem={totalItem} setTotalItem={setTotalItem} token={token} cart={cart} onUpdateCartQty={handleUpdateCartQty} onRemoveFromCart={handleRemoveFromCart} onEmptyCart={handleEmptyCart} />
           </Route>
         </Switch>
         

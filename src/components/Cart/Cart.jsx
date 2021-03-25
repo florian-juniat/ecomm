@@ -1,43 +1,82 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Container, Typography, Button, Grid } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 
 import CartItem from './CartItem/CartItem';
 import useStyles from './styles';
+import axios from 'axios';
 
-const Cart = ({ cart, onUpdateCartQty, onRemoveFromCart, onEmptyCart , token}) => {
+
+const Cart = ({ cart, onUpdateCartQty, onRemoveFromCart, onEmptyCart , token, setTotalItem, totalItem}) => {
   const classes = useStyles();
   const history = useHistory();
+
+  const [loadProduct, setLoadProduct] = useState(false)
+  const [productt, setProduct] = useState([])
 
 
   if (token == "") {
     history.push('/ecomm/signin')
   }
 
+
+  if (loadProduct == false) {
+    axios.get('https://back-ecommerce01.herokuapp.com/paiement/basket', {
+    headers: {
+      'Authorization': token
+    }}).then(res => {
+        setProduct(res.data)
+    }).catch(function (error) {
+      console.log("=======> problem get products")
+    });
+    setLoadProduct(true)
+  }
+
+  const refresh = () => {
+    axios.get('https://back-ecommerce01.herokuapp.com/paiement/basket', {
+    headers: {
+      'Authorization': token
+    }}).then(res => {
+        setProduct(res.data)
+    }).catch(function (error) {
+    });
+  }
+
   const handleEmptyCart = () => onEmptyCart();
 
   const renderEmptyCart = () => (
-    <Typography variant="subtitle1">You have no items in your shopping cart,
-      <Link className={classes.link} to="/">start adding some</Link>!
+    <Typography variant="subtitle1">You have no items in your shopping cart, 
+        <Link>
+              <a className={classes.astext} onClick={() => history.push('/ecomm/')} variant="body2">
+                {"start adding some"}
+              </a>
+        </Link>!
     </Typography>
   );
 
-  if (!cart.line_items) return 'Loading';
+  if (!loadProduct) return 'Loading';
+
+  const calculatePrice = () => {
+    var ret = 0
+    productt.map(el => {
+      ret = ret + el.price
+    })
+    return ret
+  }
 
   const renderCart = () => (
     <>
       <Grid container spacing={3}>
-        {cart.line_items.map((lineItem) => (
+        {productt.map((lineItem) => (
           <Grid item xs={12} sm={4} key={lineItem.id}>
-            <CartItem item={lineItem} onUpdateCartQty={onUpdateCartQty} onRemoveFromCart={onRemoveFromCart} />
+            <CartItem totalItem={totalItem} setTotalItem={setTotalItem} refresh={refresh} token={token} item={lineItem} onUpdateCartQty={onUpdateCartQty} onRemoveFromCart={onRemoveFromCart} />
           </Grid>
         ))}
       </Grid>
       <div className={classes.cardDetails}>
-        <Typography variant="h4">Subtotal: {cart.subtotal.formatted_with_symbol}</Typography>
+        <Typography variant="h4">Subtotal: ${calculatePrice()}</Typography>
         <div>
-          <Button className={classes.emptyButton} size="large" type="button" variant="contained" color="secondary" onClick={handleEmptyCart}>Empty cart</Button>
           <Button className={classes.checkoutButton} component={Link} to="/checkout" size="large" type="button" variant="contained" color="primary">Checkout</Button>
         </div>
       </div>
@@ -48,7 +87,7 @@ const Cart = ({ cart, onUpdateCartQty, onRemoveFromCart, onEmptyCart , token}) =
     <Container>
       <div className={classes.toolbar} />
       <Typography className={classes.title} variant="h3" gutterBottom>Your Shopping Cart</Typography>
-      { !cart.line_items.length ? renderEmptyCart() : renderCart() }
+      { !productt.length ? renderEmptyCart() : renderCart() }
     </Container>
   );
 };

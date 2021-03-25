@@ -1,13 +1,30 @@
 import React from 'react';
 import { Card, CardMedia, CardContent, CardActions, Typography, IconButton } from '@material-ui/core';
-import { AddShoppingCart } from '@material-ui/icons';
+import { AddShoppingCart, PrintRounded } from '@material-ui/icons';
 
 import useStyles from './styles';
+import axios from 'axios';
 
-const Product = ({ product, onAddToCart }) => {
+
+const Product = ({ product, onAddToCart , token, setTotalItem}) => {
   const classes = useStyles();
 
-  const handleAddToCart = () => onAddToCart(product._id, 1);
+  const handleAddToCart = () => {
+    axios.post('https://back-ecommerce01.herokuapp.com/home/addToBasket', {idItem: product.id
+      }, {
+          headers: {
+            'Authorization': token
+      }}).then(res => {
+        axios.get('https://back-ecommerce01.herokuapp.com/home/recommended', {
+          headers: {
+            'Authorization': token
+          }}).then(res => {
+              setTotalItem(res.data.basket)
+          }).catch(function (error) {
+          });
+      }).catch(function (error) {
+        });
+  }
 
   return (
     <Card className={classes.root}>

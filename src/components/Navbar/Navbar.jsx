@@ -5,11 +5,14 @@ import { Link, useLocation } from 'react-router-dom';
 
 import logo from '../../assets/commerce.png';
 import useStyles from './styles';
+import { useHistory } from 'react-router-dom';
 
-const PrimarySearchAppBar = ({ totalItems }) => {
+
+const PrimarySearchAppBar = ({ totalItems, token }) => {
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
   const classes = useStyles();
   const location = useLocation();
+  const history = useHistory();
 
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
@@ -17,10 +20,18 @@ const PrimarySearchAppBar = ({ totalItems }) => {
 
   const mobileMenuId = 'primary-search-account-menu-mobile';
 
+  const handleGoHome = () => {
+    history.push('/ecomm')
+  }
+
+  const handleGoCart = () => {
+    history.push('/ecomm/cart')
+  }
+
   const renderMobileMenu = (
     <Menu anchorEl={mobileMoreAnchorEl} anchorOrigin={{ vertical: 'top', horizontal: 'right' }} id={mobileMenuId} keepMounted transformOrigin={{ vertical: 'top', horizontal: 'right' }} open={isMobileMenuOpen} onClose={handleMobileMenuClose}>
       <MenuItem>
-        <IconButton component={Link} to="/ecomm/cart" aria-label="Show cart items" color="inherit">
+        <IconButton component={Link} onClick={handleGoCart} aria-label="Show cart items" color="inherit">
           <Badge badgeContent={totalItems} color="secondary">
             <ShoppingCart />
           </Badge>
@@ -34,7 +45,7 @@ const PrimarySearchAppBar = ({ totalItems }) => {
     <>
       <AppBar position="fixed" className={classes.appBar} color="inherit">
         <Toolbar>
-          <Typography component={Link} to="/ecomm/" variant="h6" className={classes.title} color="inherit">
+          <Typography component={Link} onClick={handleGoHome} variant="h6" className={classes.title} color="inherit">
             <img src={logo} alt="commerce.js" height="25px" className={classes.image} /> e-Teaching
           </Typography>
           
@@ -42,10 +53,10 @@ const PrimarySearchAppBar = ({ totalItems }) => {
               
               </div>
           <div className={classes.grow} />
-          {location.pathname === '/ecomm' && (
+          {token != "" && (
           <div className={classes.button}>
             
-            <IconButton component={Link} to="ecomm/cart" aria-label="Show cart items" color="inherit">
+            <IconButton component={Link} onClick={handleGoCart}  aria-label="Show cart items" color="inherit">
               <Badge badgeContent={totalItems} color="secondary">
                 <ShoppingCart />
               </Badge>
