@@ -126,7 +126,7 @@ const Products = ({ products, onAddToCart, token, setTotalItem }) => {
           
       <Grid container justify="center" spacing={4}>
 
-        {productt.map((product) =>  (product.name.toLowerCase()).includes(search) ? (
+        {productt.map((product) =>  ((product.name.toLowerCase()).includes(search.toLowerCase()) || (product.description.toLowerCase()).includes(search.toLowerCase())) ? (
           <Grid key={product._id} item xs={12} sm={6} md={4} lg={3}>
             <Product setTotalItem={setTotalItem} token={token} product={product} onAddToCart={onAddToCart} />
           </Grid>) : <div></div>
