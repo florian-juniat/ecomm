@@ -7,6 +7,8 @@ import CartItem from './CartItem/CartItem';
 import useStyles from './styles';
 import axios from 'axios';
 
+import { loadStripe } from "@stripe/stripe-js";
+
 
 const Cart = ({ cart, onUpdateCartQty, onRemoveFromCart, onEmptyCart , token, setTotalItem, totalItem}) => {
   const classes = useStyles();
@@ -65,6 +67,21 @@ const Cart = ({ cart, onUpdateCartQty, onRemoveFromCart, onEmptyCart , token, se
     return ret
   }
 
+  const handleCheckout = () => {
+
+    axios.post('https://back-ecommerce01.herokuapp.com/paiement/checkout', {product: productt
+    }, {
+        headers: {
+          'Authorization': token
+    }}).then(res => {
+      const stripe = window.Stripe("pk_test_51IW08HH1tQZu8g0MReJAaUbqYR30vtIS3iQOHDE6WJzbToUm4n3sdRyGM7BcFbgEDuJbIXyiJlNweKFByDt3Qs0o00SSVE8rzy")
+
+      if (stripe) {
+          stripe.redirectToCheckout({ sessionId: res.data.id })
+      }
+    })
+  }
+
   const renderCart = () => (
     <>
       <Grid container spacing={3}>
@@ -77,7 +94,7 @@ const Cart = ({ cart, onUpdateCartQty, onRemoveFromCart, onEmptyCart , token, se
       <div className={classes.cardDetails}>
         <Typography variant="h4">Subtotal: ${calculatePrice()}</Typography>
         <div>
-          <Button className={classes.checkoutButton} component={Link} to="/checkout" size="large" type="button" variant="contained" color="primary">Checkout</Button>
+          <Button className={classes.checkoutButton} onClick={handleCheckout} size="large" type="button" variant="contained" color="primary">Checkout</Button>
         </div>
       </div>
     </>
