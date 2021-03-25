@@ -14,9 +14,8 @@ export default makeStyles((theme) => ({
     margin: 10
   },
   submit: {
-    margin: theme.spacing(3, 2, 2),
-
-    width: "10%",
+    margin: "10px",
+    width: "150px",
     height: "50px"
   },
   buttonContainer: {
