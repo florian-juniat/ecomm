@@ -25,7 +25,8 @@ export default makeStyles((theme) => ({
     alignItems: "center",
     justifyContent:"center",
     marginLeft: "15%",
-    marginRight: "15%"
+    marginRight: "15%",
+    width: "500px"
   },
   search:
   {
