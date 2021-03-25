@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.js": "/ecomm/static/js/main.8b8201ad.chunk.js",
-    "main.js.map": "/ecomm/static/js/main.8b8201ad.chunk.js.map",
+    "main.js": "/ecomm/static/js/main.49e267e4.chunk.js",
+    "main.js.map": "/ecomm/static/js/main.49e267e4.chunk.js.map",
     "runtime-main.js": "/ecomm/static/js/runtime-main.a361016d.js",
     "runtime-main.js.map": "/ecomm/static/js/runtime-main.a361016d.js.map",
     "static/js/2.27302747.chunk.js": "/ecomm/static/js/2.27302747.chunk.js",
     "static/js/2.27302747.chunk.js.map": "/ecomm/static/js/2.27302747.chunk.js.map",
     "index.html": "/ecomm/index.html",
-    "precache-manifest.c0adf41fbd5ee89418facac970d74499.js": "/ecomm/precache-manifest.c0adf41fbd5ee89418facac970d74499.js",
+    "precache-manifest.f448fc4f4e4b4b8006bf84faa3e5a6c1.js": "/ecomm/precache-manifest.f448fc4f4e4b4b8006bf84faa3e5a6c1.js",
     "service-worker.js": "/ecomm/service-worker.js",
     "static/js/2.27302747.chunk.js.LICENSE.txt": "/ecomm/static/js/2.27302747.chunk.js.LICENSE.txt",
     "static/media/commerce.png": "/ecomm/static/media/commerce.422fec10.png"
@@ -15,6 +15,6 @@
   "entrypoints": [
     "static/js/runtime-main.a361016d.js",
     "static/js/2.27302747.chunk.js",
-    "static/js/main.8b8201ad.chunk.js"
+    "static/js/main.49e267e4.chunk.js"
   ]
 }
