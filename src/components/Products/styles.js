@@ -21,7 +21,11 @@ export default makeStyles((theme) => ({
     height: "50px"
   },
   buttonContainer: {
-    flexDirection: "row"
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent:"center",
+    marginLeft: "15%",
+    marginRight: "15%"
   },
   search:
   {
