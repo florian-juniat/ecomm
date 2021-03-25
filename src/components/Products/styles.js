@@ -17,7 +17,7 @@ export default makeStyles((theme) => ({
   },
   submit: {
     margin: "10px",
-    width: "20%",
+    width: "150px",
     height: "50px",
   },
   buttonContainer: {
