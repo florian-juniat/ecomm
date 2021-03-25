@@ -87,27 +87,27 @@ const Products = ({ products, onAddToCart, token, setTotalItem }) => {
   return (
     <main className={classes.content} justify="center">
       <div className={classes.toolbar} justify="center" />
-          <div className={classes.buttonContainer}>
-            <Button
-              disabled={reco}
-              fullWidth
-              variant="contained"
-              color="primary"
-              className={classes.submit}
-              onClick={changeReco}
-            >
-              Recommended Catalogue
-            </Button>
-            <Button
-              disabled={!reco}
-              fullWidth
-              variant="contained"
-              color="primary"
-              className={classes.submit}
-              onClick={changeReco}
-            >
-              Whole Catalogue
-            </Button>
+        <div className={classes.buttonContainer}>
+            <div className={classes.submit}>
+              <Button
+                disabled={reco}
+                variant="contained"
+                color="primary"
+                onClick={changeReco}
+              >
+                Recommended Catalogue
+              </Button>
+            </div>
+            <div className={classes.submit}>
+              <Button
+                disabled={!reco}
+                variant="contained"
+                color="primary"
+                onClick={changeReco}
+              >
+                Whole Catalogue
+              </Button>
+            </div>
             
           </div>
           <div className={classes.textContainer}>

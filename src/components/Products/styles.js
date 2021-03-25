@@ -17,17 +17,16 @@ export default makeStyles((theme) => ({
   },
   submit: {
     margin: "10px",
-    width: "150px",
-    height: "50px"
+    width: "20%",
+    height: "50px",
   },
   buttonContainer: {
     flexDirection: "row",
-    alignItems: "center",
-    justifyContent:"center",
+    alignItems: "left",
+    justifyContent:"left",
     marginLeft: "15%",
     marginRight: "15%",
-    width: "500px",
-    display: "inline-block"
+    display: "flex"
   },
   search:
   {
