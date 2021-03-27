@@ -175,20 +175,20 @@ export default function SignUp(props) {
         <FormControl className={classes.radioContainer} component="fieldset">
           <FormLabel component="legend">Education *</FormLabel>
           <RadioGroup aria-label="gender" name="gender1" value={valueEducation} onChange={handleChangeEducation}>
-            <FormControlLabel value="Higher Education" control={<Radio />} label="Informational Technology" />
-            <FormControlLabel value="Bachelors" control={<Radio />} label="Business Intelligence" />
-            <FormControlLabel value="Masters"  control={<Radio />} label="Data Science" />
-            <FormControlLabel value="PhD" control={<Radio />} label="Digital Economics" />
-            <FormControlLabel value="Postdoctorate" control={<Radio />} label="biological Computing" />
+            <FormControlLabel value="Higher Education" control={<Radio />} label="Higher Education" />
+            <FormControlLabel value="Bachelors" control={<Radio />} label="Bachelors" />
+            <FormControlLabel value="Masters"  control={<Radio />} label="Masters" />
+            <FormControlLabel value="PhD" control={<Radio />} label="PhD" />
+            <FormControlLabel value="Postdoctorate" control={<Radio />} label="Postdoctorate" />
           </RadioGroup>
         </FormControl>
 
         <FormControl className={classes.radioContainer} component="fieldset">
           <FormLabel component="legend">Reasons for taking new courses *</FormLabel>
           <RadioGroup aria-label="gender" name="gender1" value={valueResaon} onChange={handleChangeReason}>
-            <FormControlLabel value="Person Interest" control={<Radio />} label="Informational Technology" />
-            <FormControlLabel value="Educational" control={<Radio />} label="Business Intelligence" />
-            <FormControlLabel value="Career Development"  control={<Radio />} label="Data Science" />
+            <FormControlLabel value="Person Interest" control={<Radio />} label="Person Interest" />
+            <FormControlLabel value="Educational" control={<Radio />} label="Educational" />
+            <FormControlLabel value="Career Development"  control={<Radio />} label="Career Development" />
           </RadioGroup>
         </FormControl>
 
